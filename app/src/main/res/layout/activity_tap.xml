@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/tap_background"
     tools:context="cz.limeth.fildreminder.TapActivity">
 
     <ProgressBar
@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/text_tap_instructions"
-        android:textColor="#1c6380"
+        android:textColor="@color/tap_color"
         android:textSize="50sp"
         android:textStyle="bold" />
 
