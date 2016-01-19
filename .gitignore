@@ -6,3 +6,7 @@
 .DS_Store
 /build
 /captures
+
+# Exclude graphics
+/app/src/main/res/mipmap*
+/app/src/main/res/drawable*
