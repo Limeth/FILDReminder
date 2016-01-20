@@ -41,4 +41,5 @@
     <string name="text_donate_thankyou">Thank you for considering a donation. You can donate to the following address:</string>
     <string name="text_donate_walletinfo">If you have a BTC wallet app installed, you can donate via the button below.</string>
     <string name="button_donate_wallet">BTC Wallet</string>
+    <string name="pref_filechooser_unsupported">Not supported due to a low Android version.</string>
 </resources>

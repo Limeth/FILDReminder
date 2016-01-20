@@ -1,16 +1,28 @@
 package cz.limeth.fildreminder.preferences;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.preference.Preference;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Toast;
 
 import java.io.File;
+
+import cz.limeth.fildreminder.R;
 
 import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
@@ -19,6 +31,7 @@ import static android.support.v4.app.ActivityCompat.startActivityForResult;
  */
 public class FileChooserPreference extends Preference implements Preference.OnPreferenceClickListener {
     private static final String NAMESPACE = "http://schemas.android.com/apk/res/cz.limeth.fildreminder";
+    private static final int VERSION_SINCE = Build.VERSION_CODES.KITKAT;
     private int requestCode;
     private String chooserTitle;
     private String chooserNotFound;
@@ -35,6 +48,18 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
     }
 
     @Override
+    protected View onCreateView(ViewGroup parent) {
+        View view = super.onCreateView(parent);
+
+        if(Build.VERSION.SDK_INT < VERSION_SINCE) {
+            view.setOnClickListener(null);
+            setSummary(R.string.pref_filechooser_unsupported);
+        }
+
+        return view;
+    }
+
+    @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
         if(!restorePersistedValue && shouldPersist())
             persistString(defaultValue == null ? null : defaultValue.toString());
@@ -47,7 +72,7 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("audio/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         Intent chooserIntent = Intent.createChooser(intent, chooserTitle);
@@ -63,6 +88,7 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
         return true;
     }
 
+    @TargetApi(VERSION_SINCE)
     public void processActivityResult(int requestCode, int resultCode, Intent data)
     {
         if(requestCode != this.requestCode)
@@ -72,14 +98,11 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
 
         if(resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
-            String uriPath = uri.getPath();
-            String[] uriPathParts = uriPath.split(":");
+            Context context = getContext();
+            ContentResolver contentResolver = context.getContentResolver();
+            path = uri.toString();
 
-            if(uriPathParts.length > 1) {
-                path = Environment.getExternalStorageDirectory() + File.separator + uriPathParts[1];
-            } else {
-                path = uriPathParts[0];
-            }
+            contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
 
         if (shouldPersist()) {

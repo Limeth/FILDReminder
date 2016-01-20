@@ -1,7 +1,9 @@
 package cz.limeth.fildreminder;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -11,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -42,24 +45,19 @@ public class ReminderPreferences {
         String reminderAudioPath = preferences.getString("pref_key_category_reminder_audio", null);
 
         if(reminderAudioPath != null) {
-            audioFile = new File(reminderAudioPath);
-            FileInputStream fis = null;
+            Uri reminderAudioURI = Uri.parse(reminderAudioPath);
             try {
-                fis = new FileInputStream(audioFile);
+                ContentResolver contentResolver = context.getContentResolver();
+                AssetFileDescriptor assetFileDescriptor = contentResolver.openAssetFileDescriptor(reminderAudioURI, "r");
+                FileDescriptor fileDescriptor = assetFileDescriptor.getFileDescriptor();
                 audioPlayer = new MediaPlayer();
                 audioPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                audioPlayer.setDataSource(fis.getFD());
+                audioPlayer.setDataSource(fileDescriptor);
                 audioPlayer.prepare();
-            } catch (IOException e) {
-                if(fis != null) {
-                    try {
-                        fis.close();
-                    } catch (IOException e1) {}
-
-                    if (audioPlayer != null) {
-                        audioPlayer.release();
-                        audioPlayer = null;
-                    }
+            } catch (Exception e) {
+                if (audioPlayer != null) {
+                    audioPlayer.release();
+                    audioPlayer = null;
                 }
 
                 Log.e(context.getString(R.string.log_tag), "Could not prepare the reminder audio.", e);
