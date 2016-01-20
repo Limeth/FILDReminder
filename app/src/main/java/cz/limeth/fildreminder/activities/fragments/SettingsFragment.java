@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringRes;
 
 import cz.limeth.fildreminder.R;
 import cz.limeth.fildreminder.preferences.FileChooserPreference;
 import cz.limeth.fildreminder.preferences.SeekBarPreference;
 
-/**
- * Created by limeth on 15.1.16.
- */
 public class SettingsFragment extends PreferenceFragment {
     private SeekBarPreference reminderDelayPreference;
     private SeekBarPreference reminderVibratorPreference;
@@ -54,14 +50,7 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private class SummaryListener implements Preference.OnPreferenceChangeListener {
-        @StringRes
-        private int summaryRes;
         private String defaultSummary;
-
-        public SummaryListener()//@StringRes int summaryRes)
-        {
-            this.summaryRes = summaryRes;
-        }
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {

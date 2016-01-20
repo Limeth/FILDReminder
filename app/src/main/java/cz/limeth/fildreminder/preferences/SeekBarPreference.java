@@ -14,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import cz.limeth.fildreminder.R;
-
 
 /**
  * Represents an integer value via a (possibly non-linear) seek bar.

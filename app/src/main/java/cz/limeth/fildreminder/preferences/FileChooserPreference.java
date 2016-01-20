@@ -3,24 +3,16 @@ package cz.limeth.fildreminder.preferences;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.preference.Preference;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.Toast;
-
-import java.io.File;
 
 import cz.limeth.fildreminder.R;
 
@@ -42,9 +34,9 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
         setOnPreferenceClickListener(this);
         requestCode = attrs.getAttributeIntValue(NAMESPACE, "requestCode", 0);
         String chooserTitleNullable = attrs.getAttributeValue(NAMESPACE, "chooserTitle");
-        chooserTitle = chooserTitleNullable != null ? chooserTitleNullable : "Select a file.";
+        chooserTitle = chooserTitleNullable != null ? chooserTitleNullable : context.getString(R.string.pref_filechooser_title);
         String chooserNotFoundNullable = attrs.getAttributeValue(NAMESPACE, "chooserNotFound");
-        chooserNotFound = chooserTitleNullable != null ? chooserNotFoundNullable : "Please install a File Manager.";
+        chooserNotFound = chooserTitleNullable != null ? chooserNotFoundNullable : context.getString(R.string.pref_filechooser_install);
     }
 
     @Override
@@ -70,6 +62,7 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
         return a.getString(index);
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onPreferenceClick(Preference preference) {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);

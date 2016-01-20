@@ -7,9 +7,6 @@ import android.view.MenuItem;
 import cz.limeth.fildreminder.activities.fragments.SettingsFragment;
 import cz.limeth.fildreminder.preferences.FileChooserPreference;
 
-/**
- * Created by limeth on 15.1.16.
- */
 public class SettingsActivity extends AppCompatPreferenceActivity {
     private SettingsFragment fragment;
 

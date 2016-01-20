@@ -7,30 +7,18 @@ import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import java.io.File;
 import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.IOException;
 
-/**
- * Created by limeth on 17.1.16.
- */
 public class ReminderPreferences {
     private int delaySeconds;
     private int vibratorDurationMillis;
-    private File audioFile;
     private MediaPlayer audioPlayer;
 
-    public ReminderPreferences()
-    {
-
-    }
-
+    @SuppressWarnings("ConstantConditions")
     public ReminderPreferences load(Context context)
     {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -46,9 +34,11 @@ public class ReminderPreferences {
 
         if(reminderAudioPath != null) {
             Uri reminderAudioURI = Uri.parse(reminderAudioPath);
+
             try {
                 ContentResolver contentResolver = context.getContentResolver();
                 AssetFileDescriptor assetFileDescriptor = contentResolver.openAssetFileDescriptor(reminderAudioURI, "r");
+                //NPE warning surpressed, because we're going to catch it anyway
                 FileDescriptor fileDescriptor = assetFileDescriptor.getFileDescriptor();
                 audioPlayer = new MediaPlayer();
                 audioPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -100,10 +90,6 @@ public class ReminderPreferences {
 
     public int getVibratorDurationMillis() {
         return vibratorDurationMillis;
-    }
-
-    public File getAudioFile() {
-        return audioFile;
     }
 
     public MediaPlayer getAudioPlayer() {
