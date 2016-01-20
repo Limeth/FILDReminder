@@ -23,8 +23,6 @@
     <string name="action_about">About</string>
     <string name="text_tap_instructions">Touch to reset the reminder countdown</string>
     <string name="title_preferences_reminder">Reminder</string>
-    <string name="preference_time_cancel">Cancel</string>
-    <string name="preference_time_set">Set</string>
     <string name="pref_key_category_reminder_delay_summary">Waits %1$s seconds before reminding</string>
     <string name="text_about_top">FILD Reminder is a utility, that will help you become lucid in a dream.</string>
     <string name="text_about_bottom">Hello, thanks for downloading this app. This project is open-source and available on <a href="https://github.com/Limeth/FILDReminder">GitHub</a>. Contributions and donations are very welcome! If you cannot afford to donate, rating the app on the Play Store helps a lot!<br/>Thank you for your support, dream on~.</string>
