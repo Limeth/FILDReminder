@@ -73,8 +73,13 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
         if(resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             String uriPath = uri.getPath();
-            String uriPathSecond = uriPath.split(":")[1];
-            path = Environment.getExternalStorageDirectory() + File.separator + uriPathSecond;
+            String[] uriPathParts = uriPath.split(":");
+
+            if(uriPathParts.length > 1) {
+                path = Environment.getExternalStorageDirectory() + File.separator + uriPathParts[1];
+            } else {
+                path = uriPathParts[0];
+            }
         }
 
         if (shouldPersist()) {
