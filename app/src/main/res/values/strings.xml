@@ -25,7 +25,7 @@
     <string name="title_preferences_reminder">Reminder</string>
     <string name="pref_key_category_reminder_delay_summary">Waits %1$s seconds before reminding</string>
     <string name="text_about_top">FILD Reminder is a utility, that will help you become lucid in a dream.</string>
-    <string name="text_about_bottom">Hello, thanks for downloading this app. This project is open-source and available on <a href="https://github.com/Limeth/FILDReminder">GitHub</a>. Contributions and donations are very welcome! If you cannot afford to donate, rating the app on the Play Store helps a lot!<br/>Thank you for your support, dream on~.</string>
+    <string name="text_about_bottom">Hello, thanks for downloading this app. This project is open-source and available on <a href="https://github.com/Limeth/FILDReminder">GitHub</a>.\nContributions and donations are very welcome! If you cannot afford to donate, rating the app on the Play Store helps a lot!\nThank you for your support, dream on~.</string>
     <string name="button_about_rate">Rate on Play Store</string>
     <string name="button_about_donate">Donate BTC</string>
     <string name="pref_key_category_reminder_vibrator_summary">Vibrates for %1$s milliseconds as a reminder</string>
