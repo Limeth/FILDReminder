@@ -1,4 +1,4 @@
-package cz.limeth.fildreminder;
+package cz.limeth.fildreminder.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import cz.limeth.fildreminder.R;
 
 /**
  * A login screen that offers login via email/password.

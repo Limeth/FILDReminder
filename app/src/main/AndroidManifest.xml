@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".FrontActivity"
+            android:name=".activities.FrontActivity"
             android:label="@string/title_activity_front">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,19 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TapActivity"
+            android:name=".activities.TapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:parentActivityName=".FrontActivity"
+            android:parentActivityName=".activities.FrontActivity"
             android:theme="@style/FullscreenTheme"></activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".FrontActivity"></activity>
+            android:parentActivityName=".activities.FrontActivity"></activity>
         <activity
-            android:name=".AboutActivity"
+            android:name=".activities.AboutActivity"
             android:label="About"
-            android:parentActivityName=".FrontActivity"></activity>
+            android:parentActivityName=".activities.FrontActivity"></activity>
     </application>
 
 </manifest>

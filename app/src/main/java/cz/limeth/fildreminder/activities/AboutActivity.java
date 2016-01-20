@@ -1,4 +1,4 @@
-package cz.limeth.fildreminder;
+package cz.limeth.fildreminder.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import cz.limeth.fildreminder.*;
 import de.schildbach.wallet.integration.android.BitcoinIntegration;
 
 /**
@@ -59,7 +60,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void onRateClick(View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Package.getStoreUri()));
+        startActivity(new Intent(Intent.ACTION_VIEW, cz.limeth.fildreminder.Package.getStoreUri()));
     }
 
     public void onDonateClick(View view) {

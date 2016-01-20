@@ -1,4 +1,4 @@
-package cz.limeth.fildreminder;
+package cz.limeth.fildreminder.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

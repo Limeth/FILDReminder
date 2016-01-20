@@ -1,4 +1,4 @@
-package cz.limeth.fildreminder;
+package cz.limeth.fildreminder.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import cz.limeth.fildreminder.R;
+import cz.limeth.fildreminder.ReminderPreferences;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

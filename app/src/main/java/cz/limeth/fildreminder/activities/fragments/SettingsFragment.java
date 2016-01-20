@@ -1,4 +1,4 @@
-package cz.limeth.fildreminder;
+package cz.limeth.fildreminder.activities.fragments;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.StringRes;
 
+import cz.limeth.fildreminder.R;
 import cz.limeth.fildreminder.preferences.FileChooserPreference;
 import cz.limeth.fildreminder.preferences.SeekBarPreference;
 

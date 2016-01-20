@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tap_background"
-    tools:context="cz.limeth.fildreminder.TapActivity">
+    tools:context=".activities.TapActivity">
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
