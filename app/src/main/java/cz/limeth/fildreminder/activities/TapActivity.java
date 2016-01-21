@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import cz.limeth.fildreminder.R;
-import cz.limeth.fildreminder.ReminderPreferences;
+import cz.limeth.fildreminder.util.ReminderPreferences;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

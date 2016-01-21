@@ -24,7 +24,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        FileChooserPreference audioPreference = fragment.getReminderAudioPreference();
+        FileChooserPreference audioPreference = fragment.getAudioFilePreference();
         audioPreference.processActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }

@@ -24,6 +24,7 @@ import static android.support.v4.app.ActivityCompat.startActivityForResult;
 public class FileChooserPreference extends Preference implements Preference.OnPreferenceClickListener {
     private static final String NAMESPACE = "http://schemas.android.com/apk/res/cz.limeth.fildreminder";
     private static final int VERSION_SINCE = Build.VERSION_CODES.KITKAT;
+    private View view;
     private int requestCode;
     private String chooserTitle;
     private String chooserNotFound;
@@ -41,7 +42,7 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
 
     @Override
     protected View onCreateView(ViewGroup parent) {
-        View view = super.onCreateView(parent);
+        view = super.onCreateView(parent);
 
         if(Build.VERSION.SDK_INT < VERSION_SINCE) {
             view.setOnClickListener(null);
@@ -102,5 +103,9 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
             persistString(path);
             callChangeListener(path);
         }
+    }
+
+    public View getView() {
+        return view;
     }
 }

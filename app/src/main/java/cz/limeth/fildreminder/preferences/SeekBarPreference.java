@@ -2,6 +2,7 @@ package cz.limeth.fildreminder.preferences;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.DialogPreference;
@@ -14,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import cz.limeth.fildreminder.util.AttributeHelper;
+import cz.limeth.fildreminder.util.Function;
+
 
 /**
  * Represents an integer value via a (possibly non-linear) seek bar.
@@ -24,6 +28,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     private static final String NAMESPACE_ANDROID ="http://schemas.android.com/apk/res/android";
     private static final String NAMESPACE_FILDREMINDER = "http://schemas.android.com/apk/res/cz.limeth.fildreminder";
 
+    private LinearLayout view;
     private SeekBar mSeekBar;
     private TextView mSplashText, mValueText;
     private Context mContext;
@@ -32,10 +37,14 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     private int mDefault, mMax, mValue = 0;
     private float mExponent, mCoefficient, mAbsolute;
 
-    public SeekBarPreference(Context context, AttributeSet attrs) {
+    private OnProgressChangedListener onProgressChangedListener;
 
-        super(context, attrs);
+    public SeekBarPreference(Context context, AttributeSet attrsRaw) {
+
+        super(context, attrsRaw);
         mContext = context;
+        Resources resources = context.getResources();
+        AttributeHelper attrs = new AttributeHelper(attrsRaw, resources);
 
         // Get string value for dialogMessage :
         int mDialogMessageId = attrs.getAttributeResourceValue(NAMESPACE_ANDROID, "dialogMessage", 0);
@@ -49,22 +58,24 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 
         // Get default and max seekbar values :
         mDefault = attrs.getAttributeIntValue(NAMESPACE_ANDROID, "defaultValue", 0);
-        mMax = attrs.getAttributeIntValue(NAMESPACE_ANDROID, "max", 100);
+        mMax = attrs.resolveInteger(NAMESPACE_ANDROID, "max", 100);
 
         mExponent = attrs.getAttributeFloatValue(NAMESPACE_FILDREMINDER, "exponent", 1);
         mCoefficient = attrs.getAttributeFloatValue(NAMESPACE_FILDREMINDER, "coefficient", 1);
         mAbsolute = attrs.getAttributeFloatValue(NAMESPACE_FILDREMINDER, "absolute", 0);
 
-        //onSetInitialValue(false, mDefault); // A workaround, because it's appearently not called.
+        onProgressChangedListener = new DefaultOnProgressChangedListener();
     }
 
     @Override
     protected View onCreateDialogView() {
 
+        // TODO: Use an xml layout
+
         LinearLayout.LayoutParams params;
         LinearLayout layout = new LinearLayout(mContext);
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(6,6,6,6);
+        layout.setPadding(6, 6, 6, 6);
 
         mSplashText = new TextView(mContext);
         mSplashText.setPadding(30, 10, 30, 10);
@@ -88,7 +99,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 
         updateSeekBar();
 
-        return layout;
+        return view = layout;
     }
 
     @Override
@@ -132,15 +143,8 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     @Override
     public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
     {
-        value = fromSliderValue(value);
-        String t = String.valueOf(value);
-        mValueText.setText(mSuffix == null ? t : t.concat(" " + mSuffix));
-
-        if(!fromTouch)
-            return;
-
-        int sliderValue = toSliderValue(value);
-        seek.setProgress(sliderValue);
+        if (onProgressChangedListener != null)
+            onProgressChangedListener.onProgressChanged(this, seek, value, fromTouch);
     }
 
     @Override
@@ -176,11 +180,69 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
             callChangeListener(mValue);
         }
 
-        ((AlertDialog) getDialog()).dismiss();
+        getDialog().dismiss();
     }
 
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return a.getInt(index, mDefault);
+    }
+
+    public LinearLayout getView() {
+        return view;
+    }
+
+    public OnProgressChangedListener getOnProgressChangedListener() {
+        return onProgressChangedListener;
+    }
+
+    public void setOnProgressChangedListener(OnProgressChangedListener onProgressChangedListener) {
+        this.onProgressChangedListener = onProgressChangedListener;
+    }
+
+    public TextView getTextView() {
+        return mValueText;
+    }
+
+    public String getSuffix() {
+        return mSuffix;
+    }
+
+    public interface OnProgressChangedListener {
+        void onProgressChanged(SeekBarPreference preference, SeekBar seekBar, int value, boolean fromTouch);
+    }
+
+    public static class DefaultOnProgressChangedListener implements OnProgressChangedListener {
+        private Function<? extends Object, Integer> valueModifier;
+
+        public DefaultOnProgressChangedListener(Function<? extends Object, Integer> valueModifier) {
+            this.valueModifier = valueModifier;
+        }
+
+        public DefaultOnProgressChangedListener() {
+            this(null);
+        }
+
+        @Override
+        public void onProgressChanged(SeekBarPreference preference, SeekBar seekBar, int value, boolean fromTouch) {
+            value = preference.fromSliderValue(value);
+            Object displayedValue;
+
+            if(valueModifier == null)
+                displayedValue = value;
+            else
+                displayedValue = valueModifier.apply(value);
+
+            String displayedValueString = String.valueOf(displayedValue);
+            TextView mValueText = preference.getTextView();
+            String mSuffix = preference.getSuffix();
+            mValueText.setText(mSuffix == null ? displayedValueString : displayedValueString.concat(mSuffix));
+
+            if(!fromTouch)
+                return;
+
+            int sliderValue = preference.toSliderValue(value);
+            seekBar.setProgress(sliderValue);
+        }
     }
 }
