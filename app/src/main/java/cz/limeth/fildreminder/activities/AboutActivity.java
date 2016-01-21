@@ -45,7 +45,7 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         return donateDialog = new AlertDialog.Builder(this)
-                .setTitle("Donate BTC")
+                .setTitle(R.string.button_about_donate)
                 .setView(donateDialogView)
                 .create();
     }
