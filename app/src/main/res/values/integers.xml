@@ -13,4 +13,7 @@
     <integer name="preference_vibrator_duration_default">1000</integer>
     <integer name="preference_vibrator_period_default">@integer/constant_vibrator_period</integer>
 
+    <integer name="preference_audio_volume_default">75</integer>
+    <integer name="preference_audio_volume_max">100</integer>
+
 </resources>

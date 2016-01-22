@@ -45,6 +45,15 @@
             android:summary="@string/preference_audio_file_summary"
             fildReminder:chooserTitle="@string/preference_audio_file_choosertitle" />
 
+        <cz.limeth.fildreminder.preferences.SeekBarPreference
+            android:key="@string/preference_audio_volume_key"
+            android:defaultValue="@integer/preference_audio_volume_default"
+            android:max="@integer/preference_audio_volume_max"
+            android:title="@string/preference_audio_volume_title"
+            android:summary="@string/preference_audio_volume_summary"
+            android:text="@string/preference_audio_volume_unit"
+            android:dialogMessage="@string/preference_audio_volume_dialogmessage" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

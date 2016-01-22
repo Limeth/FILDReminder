@@ -58,6 +58,7 @@
     <string name="preference_delay_dialogmessage">How long should I wait to send you a reminder that you have fallen asleep after you had stopped lifting your fingers?</string>
 
     <string name="preference_vibrator_title">Vibrator</string>
+    <string name="preference_vibrator_unsupported">Vibrator not supported.</string>
     <string translatable="false" name="preference_vibrator_duration_key">preference_vibrator_duration_key</string>
     <string name="preference_vibrator_duration_title">Duration</string>
     <string name="preference_vibrator_duration_summary">Vibrates for %1$s milliseconds as a reminder</string>
@@ -68,13 +69,17 @@
     <string name="preference_vibrator_intensity_summary">The intensity of the vibrator is set to %1$s%%.</string>
     <string name="preference_vibrator_intensity_unit">%</string>
     <string name="preference_vibrator_intensity_dialogmessage">How intense should the vibrations be? Turn off by setting to 0.</string>
-    <string name="preference_vibrator_unsupported">Vibrator not supported.</string>
 
-    <string translatable="false" name="preference_audio_file_key">preference_audio_file_key</string>
     <string name="preference_audio_title">Sound</string>
+    <string translatable="false" name="preference_audio_file_key">preference_audio_file_key</string>
     <string name="preference_audio_file_summary">Plays sound as a reminder: %1$s</string>
     <string name="preference_audio_file_title">File</string>
     <string name="preference_audio_file_choosertitle">Select an audio file to be played as a reminder</string>
+    <string translatable="false" name="preference_audio_volume_key">preference_audio_volume_key</string>
+    <string name="preference_audio_volume_title">Volume</string>
+    <string name="preference_audio_volume_summary">The sound volume is set to %1$s%%.</string>
+    <string name="preference_audio_volume_unit">%</string>
+    <string name="preference_audio_volume_dialogmessage">How loud should the sound be? Turn off by setting to 0.</string>
 
     <string name="preference_filechooser_unsupported">Not supported due to a low Android version.</string>
     <string name="preference_filechooser_install">Please install a File Manager.</string>

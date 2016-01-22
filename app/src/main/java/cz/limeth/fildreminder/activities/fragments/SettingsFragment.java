@@ -7,6 +7,7 @@ import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntegerRes;
 
 import cz.limeth.fildreminder.R;
 import cz.limeth.fildreminder.preferences.FileChooserPreference;
@@ -20,6 +21,7 @@ public class SettingsFragment extends PreferenceFragment {
     private SeekBarPreference vibratorDurationPreference;
     private SeekBarPreference vibratorIntensityPreference;
     private FileChooserPreference audioFilePreference;
+    private SeekBarPreference audioVolumePreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class SettingsFragment extends PreferenceFragment {
         vibratorDurationPreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_vibrator_duration_key));
         vibratorIntensityPreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_vibrator_intensity_key));
         audioFilePreference = (FileChooserPreference) findPreference(resources.getString(R.string.preference_audio_file_key));
+        audioVolumePreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_audio_volume_key));
 
         setSummaryListener(delayPreference, new FormatSummaryListener(context));
 
@@ -50,6 +53,8 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
         setSummaryListener(audioFilePreference, new FormatSummaryListener(context));
+        setSummaryListener(audioVolumePreference, new FormatSummaryListener(context, volumeSummaryValueModifierUnsafe));
+        audioVolumePreference.setOnProgressChangedListener(new SeekBarPreference.DefaultOnProgressChangedListener(volumeSummaryValueModifier));
     }
 
     private void setSummaryListener(Preference preference, SummaryListener listener) {
@@ -86,13 +91,30 @@ public class SettingsFragment extends PreferenceFragment {
         }
     };
 
-    private final Function<Double, Integer> intensitySummaryValueModifier = new Function<Double, Integer>() {
+    private final Function<Double, Object> volumeSummaryValueModifierUnsafe = new Function<Double, Object>() {
+        @Override
+        public Double apply(Object value) {
+            return volumeSummaryValueModifier.apply((int) value);
+        }
+    };
+
+    private final Function<Double, Integer> intensitySummaryValueModifier = new SummaryValueModifier(R.integer.constant_vibrator_period);
+    private final Function<Double, Integer> volumeSummaryValueModifier = new SummaryValueModifier(R.integer.preference_audio_volume_max);
+
+    private class SummaryValueModifier implements Function<Double, Integer> {
+        @IntegerRes
+        private int maxId;
+
+        private SummaryValueModifier(@IntegerRes int maxId) {
+            this.maxId = maxId;
+        }
+
         @Override
         public Double apply(Integer value) {
             Context context = getActivity().getApplicationContext();
             Resources resources = context.getResources();
-            int period = resources.getInteger(R.integer.constant_vibrator_period);
-            return 100 * (double) (int) value / (double) period;
+            int max = resources.getInteger(maxId);
+            return 100 * (double) (int) value / (double) max;
         }
-    };
+    }
 }

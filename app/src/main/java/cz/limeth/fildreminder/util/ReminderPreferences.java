@@ -38,8 +38,10 @@ public class ReminderPreferences {
 
         // Prepare for playing an audio file as a reminder
         String reminderAudioPath = preferences.getString(resources.getString(R.string.preference_audio_file_key), null);
+        float volume = (float) preferences.getInt(resources.getString(R.string.preference_audio_volume_key), resources.getInteger(R.integer.preference_audio_volume_default))
+                / (float) resources.getInteger(R.integer.preference_audio_volume_max);
 
-        if(reminderAudioPath != null) {
+        if(reminderAudioPath != null && volume > 0) {
             Uri reminderAudioURI = Uri.parse(reminderAudioPath);
 
             try {
@@ -51,6 +53,7 @@ public class ReminderPreferences {
                 audioPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 audioPlayer.setDataSource(fileDescriptor);
                 audioPlayer.prepare();
+                audioPlayer.setVolume(volume, volume);
             } catch (Exception e) {
                 if (audioPlayer != null) {
                     audioPlayer.release();
