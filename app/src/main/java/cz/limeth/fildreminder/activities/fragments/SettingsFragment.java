@@ -26,14 +26,15 @@ public class SettingsFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
 
         Context context = getActivity().getApplicationContext();
+        Resources resources = context.getResources();
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         addPreferencesFromResource(R.xml.preferences);
 
-        delayPreference = (SeekBarPreference) findPreference("pref_key_category_delay");
-        vibratorDurationPreference = (SeekBarPreference) findPreference("pref_key_category_vibrator_duration");
-        vibratorIntensityPreference = (SeekBarPreference) findPreference("pref_key_category_vibrator_intensity");
-        audioFilePreference = (FileChooserPreference) findPreference("pref_key_category_audio_file");
+        delayPreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_delay_key));
+        vibratorDurationPreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_vibrator_duration_key));
+        vibratorIntensityPreference = (SeekBarPreference) findPreference(resources.getString(R.string.preference_vibrator_intensity_key));
+        audioFilePreference = (FileChooserPreference) findPreference(resources.getString(R.string.preference_audio_file_key));
 
         setSummaryListener(delayPreference, new FormatSummaryListener(context));
 
@@ -44,8 +45,8 @@ public class SettingsFragment extends PreferenceFragment {
         } else {
             vibratorDurationPreference.getView().setOnClickListener(null);
             vibratorIntensityPreference.getView().setOnClickListener(null);
-            vibratorDurationPreference.setSummary(R.string.pref_key_category_vibrator_unsupported);
-            vibratorIntensityPreference.setSummary(R.string.pref_key_category_vibrator_unsupported);
+            vibratorDurationPreference.setSummary(R.string.preference_vibrator_unsupported);
+            vibratorIntensityPreference.setSummary(R.string.preference_vibrator_unsupported);
         }
 
         setSummaryListener(audioFilePreference, new FormatSummaryListener(context));
@@ -90,7 +91,7 @@ public class SettingsFragment extends PreferenceFragment {
         public Double apply(Integer value) {
             Context context = getActivity().getApplicationContext();
             Resources resources = context.getResources();
-            int period = resources.getInteger(R.integer.pref_period_category_vibrator);
+            int period = resources.getInteger(R.integer.constant_vibrator_period);
             return 100 * (double) (int) value / (double) period;
         }
     };

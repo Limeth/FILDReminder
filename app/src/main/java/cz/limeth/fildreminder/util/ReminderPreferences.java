@@ -29,15 +29,15 @@ public class ReminderPreferences {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // How long to wait after touching the screen to remind
-        delaySeconds = preferences.getInt("pref_key_category_delay", resources.getInteger(R.integer.pref_default_category_delay));
+        delaySeconds = preferences.getInt(resources.getString(R.string.preference_delay_key), resources.getInteger(R.integer.preference_delay_default));
 
         // Reminder vibrator
-        vibratorDurationMillis = preferences.getInt("pref_key_category_vibrator_duration", resources.getInteger(R.integer.pref_default_category_vibrator));
-        vibratorIntensity = (double) preferences.getInt("pref_key_category_vibrator_intensity", resources.getInteger(R.integer.pref_period_category_vibrator))
-                / (double) resources.getInteger(R.integer.pref_period_category_vibrator);
+        vibratorDurationMillis = preferences.getInt(resources.getString(R.string.preference_vibrator_duration_key), resources.getInteger(R.integer.preference_vibrator_duration_default));
+        vibratorIntensity = (double) preferences.getInt(resources.getString(R.string.preference_vibrator_intensity_key), resources.getInteger(R.integer.constant_vibrator_period))
+                / (double) resources.getInteger(R.integer.constant_vibrator_period);
 
         // Prepare for playing an audio file as a reminder
-        String reminderAudioPath = preferences.getString("pref_key_category_audio_file", null);
+        String reminderAudioPath = preferences.getString(resources.getString(R.string.preference_audio_file_key), null);
 
         if(reminderAudioPath != null) {
             Uri reminderAudioURI = Uri.parse(reminderAudioPath);
@@ -57,7 +57,7 @@ public class ReminderPreferences {
                     audioPlayer = null;
                 }
 
-                Log.e(context.getString(R.string.log_tag), "Could not prepare the reminder audio.", e);
+                Log.e(context.getString(R.string.constant_log_tag), "Could not prepare the reminder audio.", e);
             }
         }
 
@@ -77,7 +77,7 @@ public class ReminderPreferences {
 
             if(vibrator.hasVibrator()) {
                 Resources resources = context.getResources();
-                long[] pattern = getVibrationPattern(vibratorDurationMillis, resources.getInteger(R.integer.pref_period_category_vibrator), vibratorIntensity);
+                long[] pattern = getVibrationPattern(vibratorDurationMillis, resources.getInteger(R.integer.constant_vibrator_period), vibratorIntensity);
 
                 // TODO: Use the repeat argument to avoid creating 1000 longs.
                 vibrator.vibrate(pattern, -1);

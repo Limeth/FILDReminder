@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <integer name="pref_default_category_delay">60</integer>
 
-    <integer name="pref_default_category_vibrator">1000</integer>
+    <!-- Constants -->
 
-    <integer name="pref_period_category_vibrator">20</integer>
+    <integer name="constant_vibrator_period">20</integer>
+
+
+    <!-- Preferences -->
+
+    <integer name="preference_delay_default">60</integer>
+
+    <integer name="preference_vibrator_duration_default">1000</integer>
+    <integer name="preference_vibrator_period_default">@integer/constant_vibrator_period</integer>
 
 </resources>

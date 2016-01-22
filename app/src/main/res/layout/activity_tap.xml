@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/text_tap_instructions"
+        android:text="@string/layout_tap_content"
         android:textColor="@color/tap_color"
         android:textSize="50sp"
         android:textStyle="bold" />

@@ -8,12 +8,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/constant_application_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.FrontActivity"
-            android:label="@string/title_activity_front">
+            android:label="@string/activity_front_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,16 +23,16 @@
         <activity
             android:name=".activities.TapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
+            android:label="@string/activity_tap_label"
             android:parentActivityName=".activities.FrontActivity"
             android:theme="@style/FullscreenTheme"/>
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
+            android:label="@string/activity_settings_label"
             android:parentActivityName=".activities.FrontActivity"/>
         <activity
             android:name=".activities.AboutActivity"
-            android:label="About"
+            android:label="@string/activity_about_label"
             android:parentActivityName=".activities.FrontActivity"/>
     </application>
 

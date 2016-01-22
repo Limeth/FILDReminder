@@ -1,12 +1,23 @@
 <resources>
-    <string name="app_name" translatable="false">FILD Reminder</string>
-    <string name="log_tag" translatable="false">FILD Reminder</string>
-    <string name="donation_address" translatable="false">1DkApphjfRS6vL1C9axyGs13jDpPLYe7BY</string>
 
-    <string name="title_activity_front">FILD Reminder</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="button_front_launch">Induce!</string>
-    <string name="text_front">"1. Set up an alarm to wake you up in 4 hours.
+    <!-- Constants -->
+
+    <string translatable="false" name="constant_application_name">FILD Reminder</string>
+    <string translatable="false" name="constant_log_tag">@string/constant_application_name</string>
+    <string translatable="false" name="constant_donation_address">1DkApphjfRS6vL1C9axyGs13jDpPLYe7BY</string>
+
+
+    <!-- Activities -->
+
+    <string name="activity_front_label">@string/constant_application_name</string>
+    <string name="activity_tap_label">@string/constant_application_name</string>
+    <string name="activity_about_label">About</string>
+    <string name="activity_settings_label">Settings</string>
+
+
+    <!-- Layouts -->
+
+    <string name="layout_front_content">"1. Set up an alarm to wake you up in 4 hours.
 2. Put this device within the reach so you can grab it from your bed without waking yourself up too much.
 3. Go to sleep as you normally would.
 4. After you've been woken up, press the "INDUCE!" button.
@@ -17,37 +28,56 @@
 9. The reality check will eventually not work.
 10. ???
 11. PROFIT!"</string>
-    <string name="text_front_more"><a href="http://lmgtfy.com/?q=FILD">learn more...</a></string>
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_about">About</string>
-    <string name="text_tap_instructions">Touch to reset the reminder countdown</string>
-    <string name="title_preferences_vibrator">Vibrator</string>
-    <string name="title_preferences_audio">Sound</string>
-    <string name="pref_key_category_reminder_delay_summary">Waits %1$s seconds before reminding</string>
-    <string name="text_about_top">FILD Reminder is a utility, that will help you become lucid in a dream.</string>
-    <string name="text_about_bottom">Hello, thanks for downloading this app. This project is open-source and available on <a href="https://github.com/Limeth/FILDReminder">GitHub</a>.\nContributions and donations are very welcome! If you cannot afford to donate, rating the app on the Play Store helps a lot!\nThank you for your support, dream on~.</string>
-    <string name="button_about_rate">Rate on Play Store</string>
-    <string name="button_about_donate">Donate BTC</string>
-    <string name="pref_key_category_vibrator_summary">Vibrates for %1$s milliseconds as a reminder</string>
-    <string name="pref_key_category_audio_summary">Plays sound as a reminder: %1$s</string>
-    <string name="pref_key_category_delay_dialogmessage">How long should I wait to send you a reminder that you have fallen asleep after you had stopped lifting your fingers?</string>
-    <string name="pref_key_category_delay_unit">\u0020seconds</string>
-    <string name="pref_key_category_delay_title">Delay</string>
-    <string name="pref_key_category_vibrator_title">Duration</string>
-    <string name="pref_key_category_vibrator_unit">\u0020milliseconds</string>
-    <string name="pref_key_category_vibrator_dialogmessage">How long should the phone vibrate to remind you, that you are asleep? Turn off by setting to 0.</string>
-    <string name="pref_key_category_audio_title">File</string>
-    <string name="pref_key_category_audio_choosertitle">Select an audio file to be played as a reminder</string>
-    <string name="text_donate_thankyou">Thank you for considering a donation. You can donate to the following address:</string>
-    <string name="text_donate_walletinfo">If you have a BTC wallet app installed, you can donate via the button below.</string>
-    <string name="button_donate_wallet">BTC Wallet</string>
-    <string name="pref_filechooser_unsupported">Not supported due to a low Android version.</string>
-    <string name="pref_filechooser_install">Please install a File Manager.</string>
-    <string name="pref_filechooser_title">Select a file.</string>
-    <string name="pref_key_category_vibrator_intensity_title">Intensity</string>
-    <string name="pref_key_category_vibrator_intensity_summary">The intensity of the vibrator is set to %1$s%%.</string>
-    <string name="pref_key_category_vibrator_intensity_unit">%</string>
-    <string name="pref_key_category_vibrator_intensity_dialogmessage">How intense should the vibrations be? Turn off by setting to 0.</string>
-    <string name="pref_key_category_vibrator_unsupported">Vibrator not supported.</string>
+    <string name="layout_front_more"><a href="http://lmgtfy.com/?q=FILD">learn more...</a></string>
+    <string name="layout_front_launch_label">Induce!</string>
+
+    <string name="layout_tap_content">Touch to reset the reminder countdown</string>
+
+    <string name="layout_about_content_top">FILD Reminder is a utility, that will help you become lucid in a dream.</string>
+    <string name="layout_about_content_bottom">Hello, thanks for downloading this app. This project is open-source and available on <a href="https://github.com/Limeth/FILDReminder">GitHub</a>.\nContributions and donations are very welcome! If you cannot afford to donate, rating the app on the Play Store helps a lot!\nThank you for your support, dream on~.</string>
+    <string name="layout_about_rate_label">Rate on Play Store</string>
+    <string name="layout_about_donate_label">Donate BTC</string>
+    <string name="layout_about_donate_thankyou">Thank you for considering a donation. You can donate to the following address:</string>
+    <string name="layout_about_donate_address" translatable="false">@string/constant_donation_address</string>
+    <string name="layout_about_donate_walletinfo">If you have a BTC wallet app installed, you can donate via the button below.</string>
+    <string name="layout_about_donate_confirm_label">@string/layout_about_donate_label</string>
+
+
+    <!-- Menus -->
+
+    <string name="menu_front_settings">Settings</string>
+    <string name="menu_front_about">About</string>
+
+
+    <!-- Preferences -->
+
+    <string translatable="false" name="preference_delay_key">preference_delay_key</string>
+    <string name="preference_delay_title">Delay</string>
+    <string name="preference_delay_summary">Waits %1$s seconds before reminding</string>
+    <string name="preference_delay_unit">\u0020seconds</string>
+    <string name="preference_delay_dialogmessage">How long should I wait to send you a reminder that you have fallen asleep after you had stopped lifting your fingers?</string>
+
+    <string name="preference_vibrator_title">Vibrator</string>
+    <string translatable="false" name="preference_vibrator_duration_key">preference_vibrator_duration_key</string>
+    <string name="preference_vibrator_duration_title">Duration</string>
+    <string name="preference_vibrator_duration_summary">Vibrates for %1$s milliseconds as a reminder</string>
+    <string name="preference_vibrator_duration_unit">\u0020milliseconds</string>
+    <string name="preference_vibrator_duration_dialogmessage">How long should the phone vibrate to remind you, that you are asleep? Turn off by setting to 0.</string>
+    <string translatable="false" name="preference_vibrator_intensity_key">preference_vibrator_intensity_key</string>
+    <string name="preference_vibrator_intensity_title">Intensity</string>
+    <string name="preference_vibrator_intensity_summary">The intensity of the vibrator is set to %1$s%%.</string>
+    <string name="preference_vibrator_intensity_unit">%</string>
+    <string name="preference_vibrator_intensity_dialogmessage">How intense should the vibrations be? Turn off by setting to 0.</string>
+    <string name="preference_vibrator_unsupported">Vibrator not supported.</string>
+
+    <string translatable="false" name="preference_audio_file_key">preference_audio_file_key</string>
+    <string name="preference_audio_title">Sound</string>
+    <string name="preference_audio_file_summary">Plays sound as a reminder: %1$s</string>
+    <string name="preference_audio_file_title">File</string>
+    <string name="preference_audio_file_choosertitle">Select an audio file to be played as a reminder</string>
+
+    <string name="preference_filechooser_unsupported">Not supported due to a low Android version.</string>
+    <string name="preference_filechooser_install">Please install a File Manager.</string>
+    <string name="preference_filechooser_title">Select a file.</string>
+
 </resources>

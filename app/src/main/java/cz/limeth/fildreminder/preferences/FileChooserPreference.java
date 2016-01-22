@@ -35,9 +35,9 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
         setOnPreferenceClickListener(this);
         requestCode = attrs.getAttributeIntValue(NAMESPACE, "requestCode", 0);
         String chooserTitleNullable = attrs.getAttributeValue(NAMESPACE, "chooserTitle");
-        chooserTitle = chooserTitleNullable != null ? chooserTitleNullable : context.getString(R.string.pref_filechooser_title);
+        chooserTitle = chooserTitleNullable != null ? chooserTitleNullable : context.getString(R.string.preference_filechooser_title);
         String chooserNotFoundNullable = attrs.getAttributeValue(NAMESPACE, "chooserNotFound");
-        chooserNotFound = chooserTitleNullable != null ? chooserNotFoundNullable : context.getString(R.string.pref_filechooser_install);
+        chooserNotFound = chooserTitleNullable != null ? chooserNotFoundNullable : context.getString(R.string.preference_filechooser_install);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class FileChooserPreference extends Preference implements Preference.OnPr
 
         if(Build.VERSION.SDK_INT < VERSION_SINCE) {
             view.setOnClickListener(null);
-            setSummary(R.string.pref_filechooser_unsupported);
+            setSummary(R.string.preference_filechooser_unsupported);
         }
 
         return view;

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/text_donate_thankyou"
+        android:text="@string/layout_about_donate_thankyou"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/addressText"
         android:layout_gravity="center_horizontal"
-        android:text="@string/donation_address"
+        android:text="@string/layout_about_donate_address"
         android:inputType="none"
         android:textIsSelectable="true"
         android:selectAllOnFocus="true" />
@@ -34,14 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/text_donate_walletinfo"
+        android:text="@string/layout_about_donate_walletinfo"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_donate_wallet"
+        android:text="@string/layout_about_donate_confirm_label"
         android:id="@+id/walletButton"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

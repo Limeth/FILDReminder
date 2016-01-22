@@ -45,7 +45,7 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         return donateDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.button_about_donate)
+                .setTitle(R.string.layout_about_donate_label)
                 .setView(donateDialogView)
                 .create();
     }
@@ -59,7 +59,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void onWalletClick(View view) {
-        BitcoinIntegration.request(this, getString(R.string.donation_address));
+        BitcoinIntegration.request(this, getString(R.string.constant_donation_address));
     }
 
     // Here follows the BTC API, because the authors of the BitcoinIntegration library decided to make the functions private. Please, don't do that.
@@ -81,7 +81,7 @@ public class AboutActivity extends AppCompatActivity {
     private boolean isWalletInstalled()
     {
         final PackageManager pm = getPackageManager();
-        final Intent intent = makeBitcoinUriIntent(getString(R.string.donation_address), null);
+        final Intent intent = makeBitcoinUriIntent(getString(R.string.constant_donation_address), null);
 
         return pm.resolveActivity(intent, 0) != null;
     }

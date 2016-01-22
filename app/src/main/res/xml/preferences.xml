@@ -1,51 +1,49 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:fildReminder="http://schemas.android.com/apk/res/cz.limeth.fildreminder">
 
     <cz.limeth.fildreminder.preferences.SeekBarPreference
-        android:key="pref_key_category_delay"
-        android:defaultValue="@integer/pref_default_category_delay"
+        android:key="@string/preference_delay_key"
+        android:defaultValue="@integer/preference_delay_default"
         android:max="600"
         fildReminder:exponent="2.8"
         fildReminder:coefficient="0.001"
         fildReminder:absolute="1"
-        android:title="@string/pref_key_category_delay_title"
-        android:summary="@string/pref_key_category_reminder_delay_summary"
-        android:text="@string/pref_key_category_delay_unit"
-        android:dialogMessage="@string/pref_key_category_delay_dialogmessage" />
+        android:title="@string/preference_delay_title"
+        android:summary="@string/preference_delay_summary"
+        android:text="@string/preference_delay_unit"
+        android:dialogMessage="@string/preference_delay_dialogmessage" />
 
     <PreferenceCategory
-        android:title="@string/title_preferences_vibrator"
-        android:key="pref_key_category_vibrator">
+        android:title="@string/preference_vibrator_title" >
 
         <cz.limeth.fildreminder.preferences.SeekBarPreference
-            android:key="pref_key_category_vibrator_duration"
-            android:defaultValue="@integer/pref_default_category_vibrator"
+            android:key="@string/preference_vibrator_duration_key"
+            android:defaultValue="@integer/preference_vibrator_duration_default"
             android:max="10000"
-            android:title="@string/pref_key_category_vibrator_title"
-            android:summary="@string/pref_key_category_vibrator_summary"
-            android:text="@string/pref_key_category_vibrator_unit"
-            android:dialogMessage="@string/pref_key_category_vibrator_dialogmessage" />
+            android:title="@string/preference_vibrator_duration_title"
+            android:summary="@string/preference_vibrator_duration_summary"
+            android:text="@string/preference_vibrator_duration_unit"
+            android:dialogMessage="@string/preference_vibrator_duration_dialogmessage" />
 
         <cz.limeth.fildreminder.preferences.SeekBarPreference
-            android:key="pref_key_category_vibrator_intensity"
-            android:defaultValue="@integer/pref_period_category_vibrator"
-            android:max="@integer/pref_period_category_vibrator"
-            android:title="@string/pref_key_category_vibrator_intensity_title"
-            android:summary="@string/pref_key_category_vibrator_intensity_summary"
-            android:text="@string/pref_key_category_vibrator_intensity_unit"
-            android:dialogMessage="@string/pref_key_category_vibrator_intensity_dialogmessage" />
+            android:key="@string/preference_vibrator_intensity_key"
+            android:defaultValue="@integer/constant_vibrator_period"
+            android:max="@integer/constant_vibrator_period"
+            android:title="@string/preference_vibrator_intensity_title"
+            android:summary="@string/preference_vibrator_intensity_summary"
+            android:text="@string/preference_vibrator_intensity_unit"
+            android:dialogMessage="@string/preference_vibrator_intensity_dialogmessage" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/title_preferences_audio"
-        android:key="pref_key_category_audio">
+        android:title="@string/preference_audio_title" >
 
         <cz.limeth.fildreminder.preferences.FileChooserPreference
-            android:key="pref_key_category_audio_file"
+            android:key="@string/preference_audio_file_key"
             fildReminder:requestCode="100"
-            android:title="@string/pref_key_category_audio_title"
-            android:summary="@string/pref_key_category_audio_summary"
-            fildReminder:chooserTitle="@string/pref_key_category_audio_choosertitle" />
+            android:title="@string/preference_audio_file_title"
+            android:summary="@string/preference_audio_file_summary"
+            fildReminder:chooserTitle="@string/preference_audio_file_choosertitle" />
 
     </PreferenceCategory>
 

@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/text_front"
+            android:text="@string/layout_front_content"
             android:id="@+id/text_front"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -40,14 +40,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/text_front_more"
+            android:text="@string/layout_front_more"
             android:id="@+id/text_front_more"
             android:layout_gravity="end" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_front_launch"
+            android:text="@string/layout_front_launch_label"
             android:id="@+id/button_front_launch"
             android:onClick="onLaunchClick" />
     </LinearLayout>

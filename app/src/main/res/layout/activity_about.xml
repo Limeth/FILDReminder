@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/text_about_top"
+                android:text="@string/layout_about_content_top"
                 android:id="@+id/text_donate_top" />
 
             <Space
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_about_bottom"
+                android:text="@string/layout_about_content_bottom"
                 android:id="@+id/text_donate_bottom" />
         </LinearLayout>
     </ScrollView>
@@ -53,7 +53,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_about_rate"
+            android:text="@string/layout_about_rate_label"
             android:id="@+id/button2"
             android:onClick="onRateClick" />
 
@@ -61,7 +61,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_about_donate"
+            android:text="@string/layout_about_donate_label"
             android:id="@+id/button3"
             android:onClick="onDonateClick" />
     </LinearLayout>
